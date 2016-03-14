@@ -3,18 +3,116 @@
 <head>
 	<title>Python Starter Application</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" href="stylesheets/style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="/static/stylesheets/style.css" />
+	<script>
+		$(document).ready(function() {
+			var URL_FOR_ANALYZE = "http://perinsight.w3ibm.mybluemix.net" + "/analyze"
+			$("#div1").hide()
+			$("#div2").hide()
+			$("button").click(function(){
+					var input, div, part
+					if (this.id == "first") {
+						input = $("#first_input").val()
+						div = $("#div1")
+						part = "first"
+					} else {
+						input = $("#second_input").val()
+						div = $("#div2")
+						part = "second"
+					}
+					if (input != "") {
+						$.get(URL_FOR_ANALYZE, {twitterHandle:input}, function(data, status){
+							if (status == "success") {
+								var analysis = JSON.parse(data)
+								if (analysis["error"] == null) {
+									var html = getHTML(analysis, part)
+									div.html(html)
+								} else {
+									div.text(analysis["error"])
+								}
+								div.show()
+							}
+						});
+					}
+			});
+		});
+
+		function getHTML(analysis, divPart) {
+			var personality = analysis["tree"]["children"][0]
+			var needs = analysis["tree"]["children"][1]
+			var values = analysis["tree"]["children"][2]
+
+			// Personality
+			var html = "<h2>Personality</h2>"
+			var item
+			personality["children"][0]["children"].forEach(function(item) {
+				var val = ((item["percentage"]*100).toFixed(2))
+				var name = item["name"]
+				var divId = ("progressbar-" + name + "-" + divPart).replace(/ /g, "-")
+				html += name + ": " + val + "%"
+				html += "<div id='" + divId + "'></div>"
+				html += "<script>$('#" + divId + "').progressbar();$('#" + divId + "').progressbar('value', " + val + ");$('#" + divId + " > div').css({'background':'Orange'});$('#" + divId + "').height(15);<\/script>"
+				html += "<br>"
+			})
+
+			// Needs
+			html += "<h2>Needs</h2>"
+			needs["children"][0]["children"].forEach(function(item) {
+				var val = ((item["percentage"]*100).toFixed(2))
+				var name = item["name"]
+				var divId = ("progressbar-" + name + "-" + divPart).replace(/ /g, "-")
+				html += name + ": " + val + "%"
+				html += "<div id='" + divId + "'></div>"
+				html += "<script>$('#" + divId + "').progressbar();$('#" + divId + "').progressbar('value', " + val + ");$('#" + divId + " > div').css({'background':'Aqua'});$('#" + divId + "').height(15);<\/script>"
+				html += "<br>"
+			})
+
+			// Values
+			html += "<h2>Values</h2>"
+			values["children"][0]["children"].forEach(function(item) {
+				var val = ((item["percentage"]*100).toFixed(2))
+				var name = item["name"]
+				var divId = ("progressbar-" + name + "-" + divPart).replace(/ /g, "-")
+				html += name + ": " + val + "%"
+				html += "<div id='" + divId + "'></div>"
+				html += "<script>$('#" + divId + "').progressbar();$('#" + divId + "').progressbar('value', " + val + ");$('#" + divId + " > div').css({'background':'Coral'});$('#" + divId + "').height(15);<\/script>"
+				html += "<br>"
+			})
+
+			return html
+		}
+	</script>
 </head>
 <body>
+	<h1 align="center">Twitter Personality Insight Demo</h1>
+	<h3 align="center">For more details: <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/personality-insights/" target="_blank">Link</a></h3>
 	<table>
 		<tr>
-			<td style='width: 30%;'><img class = 'newappIcon' src='images/newapp-icon.png'>
+			<td style='width: 38%; border-left: 1px'>
+				<input id="first_input" type="text" value="" placeholder="Twitter Handle" name="twitterHandle" />
+				<button id="first" type="submit">Get my personality!</button>
+			</td>
+			<td style='width: 24%; border-left: 1px'>
+				and compare with
 			</td>
 			<td>
-				<h1 id = "message">Hello World</h1>
-				<p class='description'></p> Thanks for creating a <span class="blue">Python Starter Application</span>. Get started by reading our <a
-				href="https://www.ng.bluemix.net/docs/#starters/python/index.html#python">documentation</a>
-				or use the Start Coding guide under your app in your dashboard.
+				<input id="second_input" type="text" value="" placeholder="Twitter Handle" name="twitterHandle" />
+				<button id="second" type="submit">Get my personality!</button>
+			</td>
+		</tr>
+		<tr>
+			<td style='width: 38%;'>
+				<div id="div1" style="border:1px solid white;padding: 4px;">
+				</div>
+			</td>
+			<td style='width: 24%;'>
+			</td>
+			<td>
+				<div id="div2" style="border:1px solid white; padding: 4px;">
+				</div>
 			</td>
 		</tr>
 	</table>
