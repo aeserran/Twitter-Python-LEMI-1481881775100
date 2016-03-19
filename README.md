@@ -45,7 +45,7 @@ The Twitter Insight app demonstrates a simple, reusable Python web application t
 
 The app provides a REST API end point `analyze?twitterHandle=fatih_bulut` which accepts `GET` requests with user's twitter handle as a parameter. Once the twitter handle is retrieved the app will function in three steps: *Retrieving tweets from Twitter*, *Retrieving insights from Watson service* and finally *Presenting insights to end user*. Backend code is in `server.py` file whereas the front end code is in `static/index.html` file.  Lets visit each of these steps separately.
 
-# Retrieving tweets from Twitter
+### Retrieving tweets from Twitter
 
 In order to get the tweets from Twitter, the app uses the *Insights for Twitter* service of Bluemix. Once the service is created and bound to the application, credentials such as username, password and url to be queried will appear on the service tile. Below shows the function of `server.py` which is used to retrieve the tweets. Basically, it send a http get requests to Twitter service with parameters as: `q=from:fatih_bulut&lan=en&size=20`. The result returned from Twitter service is a JSON object. For more details see: [Insights for Twitter service documentation] (https://console.ng.bluemix.net/docs/services/Twitter/index.html#twitter)
 
@@ -58,7 +58,7 @@ def getTweets(self, twitterHandle):
 ```
 
 
-# Retrieving insights from Watson service
+### Retrieving insights from Watson service
 
 Once the tweets are retrieved, next step would be to give tweets to *Watson Personality Insights* service and retrieve the insights. However, we first needs to change the JSON format of tweets so that it conforms to the JSON input format that the Watson Personality Insights service is expecting. Below shows how we change the format.
 
@@ -95,7 +95,6 @@ if response.status_code == requests.codes.ok:
         return response.text
 ```
 
-# Presenting insights
+### Presenting insights
 
 The last step would be the present personality insights results to the end user. `static/index.html` file used to serve that purpose. Basically, it retrieves the twitter handle from the user and call `analyze` end point in our backend to retrieve the personality insights results. Once it's retrieved, it parses it and present to the user.
- 
