@@ -34,7 +34,31 @@ The Twitter Insight app demonstrates a simple, reusable Python web application t
 
 
 ## Clean up
+
 1. Run this command to get [APP_NAME]: `cf apps`
 2. Delete: `cf delete [APP_NAME]` (replace [APP_NAME] with your application name).
 3. Delete Insights for Twitter Service: `cf delete-service twitter-insights-service`
 4. Delete Personality Insight Service: `cf delete-service personality-insights-service`
+
+
+## How it works?
+
+The app provides a REST API end point `analyze?twitterHandle=fatih_bulut` which accepts `GET` requests with user's twitter handle as a parameter. Once the twitter handle is retrieved the app will function in three steps: *Retrieving tweets from Twitter*, *Retrieving insights from Watson service* and finally *Presenting insights to end user*. Backend code is in `server.py` file whereas the front end code is in `static/index.html` file.  Lets visit each of these steps separately.
+
+# Retrieving tweets from Twitter
+
+In order to get the tweets from Twitter, the app uses the *Insights for Twitter* service of Bluemix. Once the service is created and bound to the application, credentials such as username, password and url to be queried will appear on the service tile.
+
+```Python
+def getTweets(self, twitterHandle):
+      payload = {"q": "from:" + twitterHandle, "lan": "en", "size": self.NO_OF_TWEETS_TO_RETRIEVE}
+      response = requests.get("https://cdeservice.mybluemix.net:443/api/v1/messages/search", params=payload, auth=(self.TWITTER_USERNAME, self.TWITTER_PASSWORD))
+      tweets = json.loads(response.text)
+      return tweets
+```
+
+
+# Retrieving insights from Watson service
+
+
+# Presenting insights
