@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="/static/stylesheets/style.css" />
 	<script>
 		$(document).ready(function() {
-			var URL_FOR_ANALYZE = location.protocol + '//' + location.hostname + "/analyze"
+			var URL_FOR_ANALYZE = location.protocol + '//' + location.hostname + ':' + location.port + "/analyze"
 			$("#div1").hide()
 			$("#div2").hide()
 			$("button").click(function(){
@@ -96,7 +96,7 @@
 				<button id="first" type="submit">Get my personality!</button>
 			</td>
 			<td style='width: 12%; border-left: 1px'>
-				 compare
+				 vs.
 			</td>
 			<td>
 				<input id="second_input" type="text" value="" placeholder="Twitter Handle" name="twitterHandle" />

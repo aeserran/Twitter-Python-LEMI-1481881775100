@@ -25,8 +25,9 @@ The Twitter Insight app demonstrates a simple, reusable Python web application t
 1. [Install Python][] (if you haven't installed it yet)
 2. Download the code to your computer: `git clone git@github.com:bulutmf/PerInsight.git`.
 3. cd into the app directory: `cd PerInsight`
-4. Open the `server.py` file and set the values for `TWITTER_USERNAME`, `TWITTER_PASSWORD`, `PERSONALITY_INSIGHT_USERNAME` and `PERSONALITY_INSIGHT_PASSWORD`. You can find these values from Bluemix: Dashboard => Click on the app => Look for `Show Credentials` link on each of the service tiles.
-5. Run `python server.py`
-6. Access the running app in a browser at http://localhost:8000
+4. Install the required Python packages: `pip3.5 install -r requirements.txt`
+5. Open the `server.py` file and set the values for `TWITTER_USERNAME`, `TWITTER_PASSWORD`, `PERSONALITY_INSIGHT_USERNAME` and `PERSONALITY_INSIGHT_PASSWORD`. You can find these values from Bluemix: Dashboard => Click on the app => Look for `Show Credentials` link on each of the service tiles.
+6. Run `python3.5 server.py`
+7. Access the running app in a browser at: [http://localhost:8000]
 
 [Install Python]: https://www.python.org/downloads/
