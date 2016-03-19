@@ -83,7 +83,7 @@ def tweetsToContentItem(self, tweets):
       return json.dumps({"contentItems": contentItems})
 ```
 
-Once the format is appropriate, we send an http post request to Watson service with the tweets as JSON body.
+Once the format is appropriate, we send an http post request to Watson service with the tweets as JSON body. Retuned result is what we return from the `analyze` end point. For more information about the Watson Personality Insights Service please see the [documentation] (https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html).
 
 ```Python
 jsonContentItems = self.tweetsToContentItem(tweets)
@@ -96,3 +96,6 @@ if response.status_code == requests.codes.ok:
 ```
 
 # Presenting insights
+
+The last step would be the present personality insights results to the end user. `static/index.html` file used to serve that purpose. Basically, it retrieves the twitter handle from the user and call `analyze` end point in our backend to retrieve the personality insights results. Once it's retrieved, it parses it and present to the user.
+ 
