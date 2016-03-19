@@ -1,6 +1,6 @@
 # Personality Insight App Overview
 
-The Twitter Insight app demonstrates a simple, reusable Python web application that uses Watson **Personality Insights** and **Insights for Twitter** service in Bluemix.
+The Personality Insight app demonstrates a simple, reusable Python web application that uses Watson **Personality Insights** and **Insights for Twitter** service in Bluemix.
 
 
 ## Prerequisites
@@ -20,7 +20,9 @@ The Twitter Insight app demonstrates a simple, reusable Python web application t
 7. Create a **Personality Insights** service: `cf create-service personality_insights tiered personality-insights-service`
 8. Push the application code to Bluemix: `cf push`
 
-## Run the app locally - you should first follow above steps to run the app in Bluemix
+## Run the app locally
+
+**Note**: You should first follow above steps to run the app in Bluemix.
 
 1. [Install Python][] (if you haven't installed it yet)
 2. Download the code to your computer: `git clone git@github.com:bulutmf/PerInsight.git`.
