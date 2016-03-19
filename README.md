@@ -28,6 +28,13 @@ The Twitter Insight app demonstrates a simple, reusable Python web application t
 4. Install the required Python packages: `pip3.5 install -r requirements.txt`
 5. Open the `server.py` file and set the values for `TWITTER_USERNAME`, `TWITTER_PASSWORD`, `PERSONALITY_INSIGHT_USERNAME` and `PERSONALITY_INSIGHT_PASSWORD`. You can find these values from Bluemix: Dashboard => Click on the app => Look for `Show Credentials` link on each of the service tiles.
 6. Run `python3.5 server.py`
-7. Access the running app in a browser at: [http://localhost:8000]
+7. Access the running app in a browser at: [http://localhost:8000] (http://localhost:8000)
 
 [Install Python]: https://www.python.org/downloads/
+
+
+## Clean up
+1. Run this command to get [APP_NAME]: `cf apps`
+2. Delete: `cf delete [APP_NAME]` (replace [APP_NAME] with your application name).
+3. Delete Insights for Twitter Service: `cf delete-service twitter-insights-service`
+4. Delete Personality Insight Service: `cf delete-service personality-insights-service`
