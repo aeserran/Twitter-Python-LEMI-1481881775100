@@ -47,7 +47,7 @@ The app provides a REST API end point `analyze?twitterHandle=fatih_bulut` which 
 
 # Retrieving tweets from Twitter
 
-In order to get the tweets from Twitter, the app uses the *Insights for Twitter* service of Bluemix. Once the service is created and bound to the application, credentials such as username, password and url to be queried will appear on the service tile.
+In order to get the tweets from Twitter, the app uses the *Insights for Twitter* service of Bluemix. Once the service is created and bound to the application, credentials such as username, password and url to be queried will appear on the service tile. Below shows the function of `server.py` which is used to retrieve the tweets. Basically, it send a http get requests to Twitter service with parameters as: `q=from:fatih_bulut&lan=en&size=20`. The result returned from Twitter service is a JSON object. For more details see: [Insights for Twitter service documentation] (https://console.ng.bluemix.net/docs/services/Twitter/index.html#twitter)
 
 ```Python
 def getTweets(self, twitterHandle):
@@ -60,5 +60,39 @@ def getTweets(self, twitterHandle):
 
 # Retrieving insights from Watson service
 
+Once the tweets are retrieved, next step would be to give tweets to *Watson Personality Insights* service and retrieve the insights. However, we first needs to change the JSON format of tweets so that it conforms to the JSON input format that the Watson Personality Insights service is expecting. Below shows how we change the format.
+
+```Python
+def tweetsToContentItem(self, tweets):
+      contentItems = []
+      for tweet in tweets["tweets"]:
+          item = {
+              "id": tweet["message"]["id"],
+              "userid":tweet["message"]["actor"]["id"],
+              "created": "",
+              "updated": "",
+              "contenttype": "text/plain",
+              "charset": "UTF-8",
+              "language": "en-us",
+              "content": tweet["message"]["body"],
+              "parentid": "",
+              "reply": False,
+              "forward": False
+          }
+          contentItems.append(item)
+      return json.dumps({"contentItems": contentItems})
+```
+
+Once the format is appropriate, we send an http post request to Watson service with the tweets as JSON body.
+
+```Python
+jsonContentItems = self.tweetsToContentItem(tweets)
+headers = {'content-type': 'application/json'}
+response = requests.post("https://gateway.watsonplatform.net/personality-insights/api/v2/profile", headers=headers, data=jsonContentItems, auth=(self.PERSONALITY_INSIGHT_USERNAME, self.PERSONALITY_INSIGHT_PASSWORD))
+analysis = json.loads(response.text)
+if response.status_code == requests.codes.ok:
+    if analysis["tree"] is not None:
+        return response.text
+```
 
 # Presenting insights

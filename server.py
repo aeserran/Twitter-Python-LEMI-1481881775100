@@ -5,7 +5,7 @@ import requests
 
 class PersonalityInsight(object):
     def __init__(self, vcapServices):
-        
+
         self.TWITTER_USERNAME = "CHANGE_THIS_IF_YOU_ARE_RUNNING_LOCALLY"
         self.TWITTER_PASSWORD = "CHANGE_THIS_IF_YOU_ARE_RUNNING_LOCALLY"
         self.PERSONALITY_INSIGHT_USERNAME = "CHANGE_THIS_IF_YOU_ARE_RUNNING_LOCALLY"
@@ -40,7 +40,7 @@ class PersonalityInsight(object):
             return {"error": "Analysis is not complete!"}
 
         # Now send tweets to Watson Personality Insight service and get the insight
-        jsonContentItems = json.dumps({"contentItems": self.tweetsToContentItem(tweets)})
+        jsonContentItems = self.tweetsToContentItem(tweets)
         headers = {'content-type': 'application/json'}
         response = requests.post("https://gateway.watsonplatform.net/personality-insights/api/v2/profile", headers=headers, data=jsonContentItems, auth=(self.PERSONALITY_INSIGHT_USERNAME, self.PERSONALITY_INSIGHT_PASSWORD))
         analysis = json.loads(response.text)
@@ -60,9 +60,21 @@ class PersonalityInsight(object):
     def tweetsToContentItem(self, tweets):
         contentItems = []
         for tweet in tweets["tweets"]:
-            item = {"id": tweet["message"]["id"], "userid":tweet["message"]["actor"]["id"], "created": "", "updated": "", "contenttype": "text/plain", "charset": "UTF-8", "language": "en-us", "content": tweet["message"]["body"], "parentid": "", "reply": False, "forward": False}
+            item = {
+                "id": tweet["message"]["id"],
+                "userid":tweet["message"]["actor"]["id"],
+                "created": "",
+                "updated": "",
+                "contenttype": "text/plain",
+                "charset": "UTF-8",
+                "language": "en-us",
+                "content": tweet["message"]["body"],
+                "parentid": "",
+                "reply": False,
+                "forward": False
+            }
             contentItems.append(item)
-        return contentItems
+        return json.dumps({"contentItems": contentItems})
 
 if __name__ == '__main__':
     # Get host/port from the Bluemix environment, or default to local
