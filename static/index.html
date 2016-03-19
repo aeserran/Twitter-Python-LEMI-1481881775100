@@ -9,7 +9,9 @@
 	<link rel="stylesheet" href="/static/stylesheets/style.css" />
 	<script>
 		$(document).ready(function() {
-			var URL_FOR_ANALYZE = "http://perinsight.w3ibm.mybluemix.net" + "/analyze"
+			var URL_FOR_ANALYZE = location.protocol + '//' + location.hostname + "/analyze"
+			//var URL_FOR_ANALYZE = "http://perinsight.w3ibm.mybluemix.net" + "/analyze"
+			console.log(URL_FOR_ANALYZE)
 			$("#div1").hide()
 			$("#div2").hide()
 			$("button").click(function(){
@@ -91,12 +93,12 @@
 	<h3 align="center">For more details: <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/personality-insights/" target="_blank">Link</a></h3>
 	<table>
 		<tr>
-			<td style='width: 38%; border-left: 1px'>
+			<td style='width: 44%; border-left: 1px'>
 				<input id="first_input" type="text" value="" placeholder="Twitter Handle" name="twitterHandle" />
 				<button id="first" type="submit">Get my personality!</button>
 			</td>
-			<td style='width: 24%; border-left: 1px'>
-				and compare with
+			<td style='width: 12%; border-left: 1px'>
+				 compare
 			</td>
 			<td>
 				<input id="second_input" type="text" value="" placeholder="Twitter Handle" name="twitterHandle" />
@@ -104,7 +106,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td style='width: 38%;'>
+			<td style='width: 44%;'>
 				<div id="div1" style="border:1px solid white;padding: 4px;">
 				</div>
 			</td>

@@ -16,8 +16,10 @@ The Twitter Insight app demonstrates a simple, reusable Python web application t
 3. Open the `manifest.yml` file.
 4. Edit `name` and `host` to something else. Don't use the **PerInsight** as it is already taken. Your host name should be unique in Bluemix, i.e. not taken by someone else.
 5. Set api end point to dedicated bluemix: `bluemix api https://api.w3ibm.bluemix.net`
-6. Login: `bluemix login`. Enter your *username*, *password* and choose your org and Space (if you have multiple).
-7. Push the application code to Bluemix: `cf push`
+6. Login: `bluemix login`. Enter your *username*, *password* and choose your *org* and *space* (if you have multiple).
+7. Create a **Insights for Twitter** service: `cf create-service twitterinsights Free twitter-insights-service`
+8. Create a **Personality Insights** service: `cf create-service personality_insights tiered personality-insights-service`
+9. Push the application code to Bluemix: `cf push`
 
 ## Run the app locally
 
