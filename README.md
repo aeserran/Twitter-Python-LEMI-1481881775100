@@ -22,9 +22,9 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
 
 ## Run the app locally
 
-**Note**: You should first follow above steps to run the app in Bluemix.
+**Note**: You should first follow above steps and run the app in Bluemix.
 
-1. [Install Python][] (if you haven't installed it yet)
+1. [Install Python][] (if you haven't installed it yet). Note that the app uses Python version 3.5.
 2. Download the code to your computer: `git clone git@github.com:bulutmf/PerInsight.git`.
 3. cd into the app directory: `cd PerInsight`
 4. Install the required Python packages: `pip3.5 install -r requirements.txt`
