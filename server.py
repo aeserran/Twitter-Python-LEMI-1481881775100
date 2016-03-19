@@ -5,6 +5,12 @@ import requests
 
 class PersonalityInsight(object):
     def __init__(self, vcapServices):
+        
+        self.TWITTER_USERNAME = "CHANGE_THIS_IF_YOU_ARE_RUNNING_LOCALLY"
+        self.TWITTER_PASSWORD = "CHANGE_THIS_IF_YOU_ARE_RUNNING_LOCALLY"
+        self.PERSONALITY_INSIGHT_USERNAME = "CHANGE_THIS_IF_YOU_ARE_RUNNING_LOCALLY"
+        self.PERSONALITY_INSIGHT_PASSWORD = "CHANGE_THIS_IF_YOU_ARE_RUNNING_LOCALLY"
+
         self.NO_OF_TWEETS_TO_RETRIEVE = 20
         if vcapServices is not None:
             # Lets read the credentials for twitter service from bluemix

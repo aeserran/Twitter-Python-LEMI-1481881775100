@@ -6,3 +6,6 @@ applications:
   name: PerInsight
   host: PerInsight
   disk_quota: 1024M
+services:
+- twitter-insights-service
+- personality-insights-service

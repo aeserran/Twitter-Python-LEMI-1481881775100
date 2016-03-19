@@ -1,4 +1,4 @@
-# Twitter Insight App Overview
+# Personality Insight App Overview
 
 The Twitter Insight app demonstrates a simple, reusable Python web application that uses Watson **Personality Insights** and **Insights for Twitter** service in Bluemix.
 
@@ -11,22 +11,22 @@ The Twitter Insight app demonstrates a simple, reusable Python web application t
 
 ## Run the app in Bluemix
 
-1. Download the code to your computer (or git clone git@github.com:bulutmf/PerInsight.git).
-2. Go to the downloaded folder. `cd PerInsight`
-3. Open the `manifest.yml` file.
-4. Edit `name` and `host` to something else. Don't use the **PerInsight** as it is already taken. Your host name should be unique in Bluemix, i.e. not taken by someone else.
-5. Set api end point to dedicated bluemix: `bluemix api https://api.w3ibm.bluemix.net`
-6. Login: `bluemix login`. Enter your *username*, *password* and choose your *org* and *space* (if you have multiple).
-7. Create a **Insights for Twitter** service: `cf create-service twitterinsights Free twitter-insights-service`
-8. Create a **Personality Insights** service: `cf create-service personality_insights tiered personality-insights-service`
-9. Push the application code to Bluemix: `cf push`
+1. Download the code to your computer: `git clone git@github.com:bulutmf/PerInsight.git`.
+2. cd into the app directory: `cd PerInsight`
+3. Open the `manifest.yml` file and edit `name` and `host` fields to something else. Don't use the **PerInsight** as it is already taken. Your host name should be unique in Bluemix, i.e. not taken by someone else.
+4. Set the api end point to dedicated bluemix: `bluemix api https://api.w3ibm.bluemix.net`
+5. Login: `bluemix login`.
+6. Create a **Insights for Twitter** service: `cf create-service twitterinsights Free twitter-insights-service`
+7. Create a **Personality Insights** service: `cf create-service personality_insights tiered personality-insights-service`
+8. Push the application code to Bluemix: `cf push`
 
-## Run the app locally
+## Run the app locally - you should first follow above steps to run the app in Bluemix
 
-1. [Install Python][]
-2. Download and extract the starter code from the Bluemix UI
-3. cd into the app directory
-4. Run `python server.py`
-5. Access the running app in a browser at http://localhost:8000
+1. [Install Python][] (if you haven't installed it yet)
+2. Download the code to your computer: `git clone git@github.com:bulutmf/PerInsight.git`.
+3. cd into the app directory: `cd PerInsight`
+4. Open the `server.py` file and set the values for `TWITTER_USERNAME`, `TWITTER_PASSWORD`, `PERSONALITY_INSIGHT_USERNAME` and `PERSONALITY_INSIGHT_PASSWORD`. You can find these values from Bluemix: Dashboard => Click on the app => Look for `Show Credentials` link on each of the service tiles.
+5. Run `python server.py`
+6. Access the running app in a browser at http://localhost:8000
 
 [Install Python]: https://www.python.org/downloads/
