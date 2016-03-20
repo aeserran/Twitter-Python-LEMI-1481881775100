@@ -6,12 +6,12 @@ import requests
 class PersonalityInsight(object):
     def __init__(self, vcapServices):
 
-        self.TWITTER_USERNAME = "CHANGE_THIS_IF_YOU_ARE_RUNNING_LOCALLY"
-        self.TWITTER_PASSWORD = "CHANGE_THIS_IF_YOU_ARE_RUNNING_LOCALLY"
-        self.PERSONALITY_INSIGHT_USERNAME = "CHANGE_THIS_IF_YOU_ARE_RUNNING_LOCALLY"
-        self.PERSONALITY_INSIGHT_PASSWORD = "CHANGE_THIS_IF_YOU_ARE_RUNNING_LOCALLY"
-
+        self.TWITTER_USERNAME = "b66c66ec-ec9a-4a1a-8622-5563814f69c3"#"CHANGE_THIS_IF_YOU_ARE_RUNNING_LOCALLY"
+        self.TWITTER_PASSWORD = "9EoCHoonoW"#"CHANGE_THIS_IF_YOU_ARE_RUNNING_LOCALLY"
+        self.PERSONALITY_INSIGHT_USERNAME = "6a8b981c-1cea-4633-8563-f8c7299afc2a"#"CHANGE_THIS_IF_YOU_ARE_RUNNING_LOCALLY"
+        self.PERSONALITY_INSIGHT_PASSWORD = "OKxK7F99eiY3"#"CHANGE_THIS_IF_YOU_ARE_RUNNING_LOCALLY"
         self.NO_OF_TWEETS_TO_RETRIEVE = 20
+
         if vcapServices is not None:
             # Lets read the credentials for twitter service from bluemix
             services = json.loads(vcapServices)
@@ -33,23 +33,18 @@ class PersonalityInsight(object):
     # 2. Analyze it using Watson Personality Insight Service
     @cherrypy.expose
     def analyze(self, twitterHandle):
-        # First lets get the tweets from Bluemix Twitter Service
         tweets = self.getTweets(twitterHandle)
-        print("Number of tweets returned: %d" % tweets["search"]["current"])
-        if tweets["search"]["current"] < 20:
-            return {"error": "Analysis is not complete!"}
-
-        # Now send tweets to Watson Personality Insight service and get the insight
         jsonContentItems = self.tweetsToContentItem(tweets)
+        insights = self.getInsights(jsonContentItems)
+        return insights
+
+    # Get insights from Watson Insights service
+    def getInsights(self, jsonContentItems):
         headers = {'content-type': 'application/json'}
         response = requests.post("https://gateway.watsonplatform.net/personality-insights/api/v2/profile", headers=headers, data=jsonContentItems, auth=(self.PERSONALITY_INSIGHT_USERNAME, self.PERSONALITY_INSIGHT_PASSWORD))
-        analysis = json.loads(response.text)
-        if response.status_code == requests.codes.ok:
-            if analysis["tree"] is not None:
-                return response.text
+        return response.text
 
-        return {"error": "Analysis is not complete!"}
-
+    # Get tweets from Insights for Twitter service in Bluemix
     def getTweets(self, twitterHandle):
         payload = {"q": "from:" + twitterHandle, "lan": "en", "size": self.NO_OF_TWEETS_TO_RETRIEVE}
         response = requests.get("https://cdeservice.mybluemix.net:443/api/v1/messages/search", params=payload, auth=(self.TWITTER_USERNAME, self.TWITTER_PASSWORD))
