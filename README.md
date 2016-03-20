@@ -21,7 +21,7 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
 
 1. Download the code to your computer: `git clone git@github.com:bulutmf/PerInsight.git`.
 2. cd into the app directory: `cd PerInsight`
-3. Open the `manifest.yml` file and edit `name` and `host` fields to something else. Don't use the **PerInsight** as it is already taken. Your host name should be unique in Bluemix, i.e. not taken by someone else. Take a note of the **[APP_NAME]**
+3. Open the `manifest.yml` file and edit `name` and `host` fields to something else. Don't use the **PerInsight** as it is already taken. Your host name should be unique in Bluemix, i.e. not taken by someone else. Take a note of the **[APP_NAME]**.
 4. Set the api end point to dedicated bluemix: `cf api https://api.w3ibm.bluemix.net`
 5. Login: `cf login`.
 6. Push the application code to Bluemix: `cf push`
@@ -50,7 +50,7 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
 
 1. Run this command to get [APP_NAME]: `cf apps`
 2. Delete: `cf delete [APP_NAME]` (replace [APP_NAME] with your application name).
-3. Run this command to get [SERVICES_NAME] for both Insights for Twitter service (*[SERVICE_1]*) and Watson Personality Insights service ((*[SERVICE_2]*)): `cf services`
+3. Run this command to get service names for both Insights for Twitter service (*[SERVICE_1]*) and Watson Personality Insights service (*[SERVICE_2]*): `cf services`
 4. Delete Insights for Twitter Service: `cf delete-service [SERVICE_1]`
 5. Delete Personality Insight Service: `cf delete-service [SERVICE_2]`
 
