@@ -4,6 +4,7 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
 
 * How to use Bluemix and cloud foundry (cf) comman line interfaces (cli)?
 * How to create application and services via cf cli?
+* How to bind a service to an application?
 * How to remove application and services via cf cli?
 * How to run the Python code locally?
 * How to retrieve tweets from *Insights for Twitter Service*?
@@ -20,14 +21,15 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
 
 1. Download the code to your computer: `git clone git@github.com:bulutmf/PerInsight.git`.
 2. cd into the app directory: `cd PerInsight`
-3. Open the `manifest.yml` file and edit `name` and `host` fields to something else. Don't use the **PerInsight** as it is already taken. Your host name should be unique in Bluemix, i.e. not taken by someone else. Take a note of the `[APP_NAME]`
+3. Open the `manifest.yml` file and edit `name` and `host` fields to something else. Don't use the **PerInsight** as it is already taken. Your host name should be unique in Bluemix, i.e. not taken by someone else. Take a note of the **[APP_NAME]**
 4. Set the api end point to dedicated bluemix: `cf api https://api.w3ibm.bluemix.net`
 5. Login: `cf login`.
 6. Push the application code to Bluemix: `cf push`
 7. Create a **Insights for Twitter** service: `cf create-service twitterinsights Free twitter-insights-service`.
-8. Bind `twitter-insights-service` to your application `[APP_NAME]`: `cf bind-service [APP_NAME] twitter-insights-service`.
+8. Bind *twitter-insights-service* to your application *[APP_NAME]*: `cf bind-service [APP_NAME] twitter-insights-service`.
 9. Create a **Personality Insights** service: `cf create-service personality_insights tiered personality-insights-service`.
-10. Bind `personality-insights-service` to your application `[APP_NAME]`: `cf bind-service [APP_NAME] personality-insights-service`
+10. Bind *personality-insights-service* to your application *[APP_NAME]*: `cf bind-service [APP_NAME] personality-insights-service`
+11. Restage your application so that env variables can be accessed from the application: `cf restage [APP_NAME]`
 
 ## Run the app locally
 
