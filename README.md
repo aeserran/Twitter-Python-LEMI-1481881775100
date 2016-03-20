@@ -25,9 +25,9 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
 4. Set the api end point to dedicated bluemix: `cf api https://api.w3ibm.bluemix.net`
 5. Login: `cf login`.
 6. Push the application code to Bluemix: `cf push`
-7. Create a **Insights for Twitter** service: `cf create-service twitterinsights Free twitter-insights-service`.
+7. Create a **Insights for Twitter** service: `cf create-service twitterinsights Free twitter-insights-service`. We named the service *twitter-insights-service*, you can name it whatever you want, however we use the same name to bind the service to the application in next step.
 8. Bind *twitter-insights-service* to your application *[APP_NAME]*: `cf bind-service [APP_NAME] twitter-insights-service`.
-9. Create a **Personality Insights** service: `cf create-service personality_insights tiered personality-insights-service`.
+9. Create a **Personality Insights** service: `cf create-service personality_insights tiered personality-insights-service`. We named the service *personality-insights-service*, you can name it whatever you want, however we use the same name to bind the service to the application in next step.
 10. Bind *personality-insights-service* to your application *[APP_NAME]*: `cf bind-service [APP_NAME] personality-insights-service`
 11. Restage your application so that env variables can be accessed from the application: `cf restage [APP_NAME]`
 
@@ -50,8 +50,9 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
 
 1. Run this command to get [APP_NAME]: `cf apps`
 2. Delete: `cf delete [APP_NAME]` (replace [APP_NAME] with your application name).
-3. Delete Insights for Twitter Service: `cf delete-service twitter-insights-service`
-4. Delete Personality Insight Service: `cf delete-service personality-insights-service`
+3. Run this command to get [SERVICES_NAME] for both Insights for Twitter service (*[SERVICE_1]*) and Watson Personality Insights service ((*[SERVICE_2]*)): `cf services`
+4. Delete Insights for Twitter Service: `cf delete-service [SERVICE_1]`
+5. Delete Personality Insight Service: `cf delete-service [SERVICE_2]`
 
 
 ## How it works?
