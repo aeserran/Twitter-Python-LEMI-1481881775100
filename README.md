@@ -31,6 +31,7 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
     * Restage your application so that env variables can be accessed from the application: `cf restage [APP_NAME]`.
   * **Web UI**:
     * Find your application in Bluemix dashboard and click on it.
+
     ![Dashboard](static/images/readme_images/dashboard.png#left)
     * Click on *ADD A SERVICE OR API* button.
 
