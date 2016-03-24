@@ -60,7 +60,7 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
     ![Per Insight Overview](static/images/readme_images/overview.png)
     * You can find the credentials of your service if you click on *Show Credentials* button.  
     ![Show_credentials](static/images/readme_images/show_cred_watson.png)
-9. Once you completed step 8, you should be able to see your services binded to your application in the *Overview* page.  
+9. Once you completed step 8, you should be able to see your services binded to your application in the *Overview* page. Click on the url of your application to test the website.  
 ![Overview of the app](static/images/readme_images/overview_of_app.png)
 
 
