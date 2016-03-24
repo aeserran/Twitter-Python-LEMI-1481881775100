@@ -24,7 +24,7 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
 4. Set the api end point to dedicated bluemix: `cf api https://api.w3ibm.bluemix.net`
 5. Login: `cf login`.
 6. Push the application code to Bluemix: `cf push`
-7. Create a **Insights for Twitter** service. You can do this in two different ways: command line or Web UI:
+7. Create a **Insights for Twitter** service. You can do this in two different ways: command line or Web UI. Choose the one you like.
   * **Command line**:
     * Create the service: `cf create-service twitterinsights Free twitter-insights-service`. We named the service *twitter-insights-service*, you can name it whatever you want, however we use the same name to bind the service to the application in next step.
     * Bind *twitter-insights-service* to your application *[APP_NAME]*: `cf bind-service [APP_NAME] twitter-insights-service`.
@@ -42,7 +42,7 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
     ![Twitter Overview](static/images/readme_images/overview.png)
     * You can find the credentials of your service if you click on *Show Credentials* button.  
     ![Show_credentials](static/images/readme_images/show_credentials.png)
-8. Create a **Personality Insights** service. You can do this again in two different ways: command line or Web UI:
+8. Create a **Personality Insights** service. You can do this again in two different ways: command line or Web UI. Choose the one you like.
   * **Command line**:
     * Create the service: `cf create-service personality_insights tiered personality-insights-service`. We named the service *personality-insights-service*, you can name it whatever you want, however we use the same name to bind the service to the application in next step.
     * Bind *personality-insights-service* to your application *[APP_NAME]*: `cf bind-service [APP_NAME] personality-insights-service`.
