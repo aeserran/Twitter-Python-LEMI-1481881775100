@@ -14,7 +14,6 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
 ## Prerequisites
 
 1. Install [cloud foundry command line interface] (https://github.com/cloudfoundry/cli/releases)
-2. Install [Bluemix command line interface] (http://clis.ng.bluemix.net/ui/home.html)
 
 
 ## Run the app in Bluemix
@@ -25,11 +24,32 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
 4. Set the api end point to dedicated bluemix: `cf api https://api.w3ibm.bluemix.net`
 5. Login: `cf login`.
 6. Push the application code to Bluemix: `cf push`
-7. Create a **Insights for Twitter** service: `cf create-service twitterinsights Free twitter-insights-service`. We named the service *twitter-insights-service*, you can name it whatever you want, however we use the same name to bind the service to the application in next step.
-8. Bind *twitter-insights-service* to your application *[APP_NAME]*: `cf bind-service [APP_NAME] twitter-insights-service`.
-9. Create a **Personality Insights** service: `cf create-service personality_insights tiered personality-insights-service`. We named the service *personality-insights-service*, you can name it whatever you want, however we use the same name to bind the service to the application in next step.
-10. Bind *personality-insights-service* to your application *[APP_NAME]*: `cf bind-service [APP_NAME] personality-insights-service`
-11. Restage your application so that env variables can be accessed from the application: `cf restage [APP_NAME]`
+7. Create a **Insights for Twitter** service. You can do this in two different ways: command line or Web UI:
+  * **Command line**:
+    * Create the service: `cf create-service twitterinsights Free twitter-insights-service`. We named the service *twitter-insights-service*, you can name it whatever you want, however we use the same name to bind the service to the application in next step.
+    * Bind *twitter-insights-service* to your application *[APP_NAME]*: `cf bind-service [APP_NAME] twitter-insights-service`.
+    * Restage your application so that env variables can be accessed from the application: `cf restage [APP_NAME]`.
+  * **Web UI**:
+    * Find your application in Bluemix dashboard and click on it. ![Dashboard](static/images/readme_images/dashboard.png)
+    * Click on *ADD A SERVICE OR API* button. ![Add a service](static/images/readme_images/add_a_service.png)
+    * Find *Insights for Twitter* service in *Data and Analytics* group and click on it. ![Twitter service](static/images/readme_images/twitter_service.png)
+    * Click on *Create* button to create your Twitter service. You can change the *service name* to your choice. Make sure that you choose the *Free Plan*. If it's asked, *Restage* your application. ![Add a Twitter service](static/images/readme_images/add_a_twitter_service.png)
+    * Click on *Overview* on the left side to see the services that are binded to your application. ![Twitter Overview](static/images/readme_images/overview.png)
+    * You can find the credentials of your service if you click on *Show Credentials* button. ![Show_credentials](static/images/readme_images/show_credentials.png)
+8. Create a **Personality Insights** service. You can do this again in two different ways: command line or Web UI:
+  * **Command line**:
+    * Create the service: `cf create-service personality_insights tiered personality-insights-service`. We named the service *personality-insights-service*, you can name it whatever you want, however we use the same name to bind the service to the application in next step.
+    * Bind *personality-insights-service* to your application *[APP_NAME]*: `cf bind-service [APP_NAME] personality-insights-service`.
+    * Restage your application so that env variables can be accessed from the application: `cf restage [APP_NAME]`.
+  * **Web UI**:
+    * Find your application in Bluemix dashboard and click on it. ![Dashboard](static/images/readme_images/dashboard.png)
+    * Click on *ADD A SERVICE OR API* button. ![Add a service](static/images/readme_images/add_a_service.png)
+    * Find *Personality Insights* service in *Watson* group and click on the service. ![Watson service](static/images/readme_images/personality_insights_service.png)
+    * Click on *Create* button to create your Personality Insights service. You can change the *service name* to your choice. If it's asked, *Restage* your application. ![Add a Pers Insights service](static/images/readme_images/add_per_ins.png)
+    * Click on *Overview* on the left side to see the services that are binded to your application. ![Per Insight Overview](static/images/readme_images/overview.png)
+    * You can find the credentials of your service if you click on *Show Credentials* button. ![Show_credentials](static/images/readme_images/show_cred_watson.png)
+9. Once you completed step 8, you should be able to see your services binded to your application in the *Overview* page. ![Overview of the app](static/images/readme_images/overview_of_app.png)
+
 
 ## Run the app locally
 
