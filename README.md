@@ -30,7 +30,8 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
     * Bind *twitter-insights-service* to your application *[APP_NAME]*: `cf bind-service [APP_NAME] twitter-insights-service`.
     * Restage your application so that env variables can be accessed from the application: `cf restage [APP_NAME]`.
   * **Web UI**:
-    * Find your application in Bluemix dashboard and click on it. ![Dashboard](static/images/readme_images/dashboard.png)
+    * Find your application in Bluemix dashboard and click on it.
+    ![Alt Dashboard](static/images/readme_images/dashboard.png)
     * Click on *ADD A SERVICE OR API* button. ![Add a service](static/images/readme_images/add_a_service.png)
     * Find *Insights for Twitter* service in *Data and Analytics* group and click on it. ![Twitter service](static/images/readme_images/twitter_service.png)
     * Click on *Create* button to create your Twitter service. You can change the *service name* to your choice. Make sure that you choose the *Free Plan*. If it's asked, *Restage* your application. ![Add a Twitter service](static/images/readme_images/add_a_twitter_service.png)
