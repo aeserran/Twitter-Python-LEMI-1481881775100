@@ -80,7 +80,7 @@ You can run the Python app locally. If you use Anaconda to manage your Python pa
 4. Create an environment: `conda create --name venv python=3.5`
 5. Activate the environment: `source activate venv`
 6. Install the packages: `conda install --file requirements.txt`
-8. Open the `server.py` file and set the values for `TWITTER_USERNAME`, `TWITTER_PASSWORD`, `PERSONALITY_INSIGHT_USERNAME` and `PERSONALITY_INSIGHT_PASSWORD`. You can find these values from Bluemix: Dashboard => Click on the app => Look for `Show Credentials` link on each of the service tiles.  
+8. Open the `server.py` file and set the values for `TWITTER_API_USERNAME`, `TWITTER_API_PASSWORD`, `PERSONALITY_INSIGHT_API_USERNAME` and `PERSONALITY_INSIGHT_API_PASSWORD`. You can find these values from Bluemix: Dashboard => Click on the app => Look for `Show Credentials` link on each of the service tiles.  
 ![Overview of the app](static/images/readme_images/credentials.png)
 9. Run `python server.py`
 10. Access the running app in a browser at: [http://localhost:3000] (http://localhost:3000)
@@ -94,7 +94,7 @@ You can run the Python app locally. If you use Anaconda to manage your Python pa
 5. Create a virtual env: `virtualenv -p python3.5 venv`
 6. Activate the new virtual environment: `source venv/bin/activate`
 7. Install the required Python packages: `pip install -r requirements.txt`
-8. Open the `server.py` file and set the values for `TWITTER_USERNAME`, `TWITTER_PASSWORD`, `PERSONALITY_INSIGHT_USERNAME` and `PERSONALITY_INSIGHT_PASSWORD`. You can find these values from Bluemix: Dashboard => Click on the app => Look for `Show Credentials` link on each of the service tiles.  
+8. Open the `server.py` file and set the values for `TWITTER_API_USERNAME`, `TWITTER_API_PASSWORD`, `PERSONALITY_INSIGHT_API_USERNAME` and `PERSONALITY_INSIGHT_API_PASSWORD`. You can find these values from Bluemix: Dashboard => Click on the app => Look for `Show Credentials` link on each of the service tiles.  
 ![Overview of the app](static/images/readme_images/credentials.png)
 9. Run `python server.py`
 10. Access the running app in a browser at: [http://localhost:3000] (http://localhost:3000)
