@@ -10,7 +10,7 @@ class PersonalityInsight(object):
         self.TWITTER_PASSWORD = "9EoCHoonoW"#"CHANGE_THIS_IF_YOU_ARE_RUNNING_LOCALLY"
         self.PERSONALITY_INSIGHT_USERNAME = "6a8b981c-1cea-4633-8563-f8c7299afc2a"#"CHANGE_THIS_IF_YOU_ARE_RUNNING_LOCALLY"
         self.PERSONALITY_INSIGHT_PASSWORD = "OKxK7F99eiY3"#"CHANGE_THIS_IF_YOU_ARE_RUNNING_LOCALLY"
-        self.NO_OF_TWEETS_TO_RETRIEVE = 20
+        self.NO_OF_TWEETS_TO_RETRIEVE = 100
 
         if vcapServices is not None:
             # Lets read the credentials for twitter service from bluemix

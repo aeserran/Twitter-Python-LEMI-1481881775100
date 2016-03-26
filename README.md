@@ -14,6 +14,7 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
 ## Prerequisites
 
 1. Install [cloud foundry command line interface] (https://github.com/cloudfoundry/cli/releases)
+2. Make sure that you have Python version >= 3.5.
 
 
 ## Run the app in Bluemix
@@ -66,19 +67,46 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
 
 ## Run the app locally
 
-**Note**: You should first follow above steps and run the app in Bluemix.
+You can run the Python app locally. If you use Anaconda to manage your Python packages follow the steps for Anaconda, otherwise you can follow the steps without Anaconda.
 
-1. [Install Python][] (if you haven't installed it yet). Note that the app uses Python version 3.5.
+**Note1**: You should first follow the above steps and run the app in Bluemix so that you created the services.  
+**Note2**: Steps explained below are tested in Mac. Commands should be similar for Windows environment.
+
+#### With Anaconda
+
+1. Install [Anaconda](https://www.continuum.io/downloads) (if you haven't done so)
+2.
+
+#### Without Anaconda
+
+1. [Install Python][] (if you haven't installed it yet). Note that the app uses Python version 3.5. You can check if python is install via: `python --version`
 2. Download the code to your computer: `git clone git@github.com:bulutmf/PerInsight.git`.
 3. cd into the app directory: `cd PerInsight`
-4. Install the required Python packages: `pip3.5 install -r requirements.txt`
-5. Open the `server.py` file and set the values for `TWITTER_USERNAME`, `TWITTER_PASSWORD`, `PERSONALITY_INSIGHT_USERNAME` and `PERSONALITY_INSIGHT_PASSWORD`. You can find these values from Bluemix: Dashboard => Click on the app => Look for `Show Credentials` link on each of the service tiles.  
+4. Install **virtualenv** package: `pip3.5 install virtualenv`
+5. Create a virtual env: `virtualenv venv`
+6. Activate the new virtual environment: `source venv/bin/activate`
+7. Install the required Python packages: `pip install -r requirements.txt`
+8. Open the `server.py` file and set the values for `TWITTER_USERNAME`, `TWITTER_PASSWORD`, `PERSONALITY_INSIGHT_USERNAME` and `PERSONALITY_INSIGHT_PASSWORD`. You can find these values from Bluemix: Dashboard => Click on the app => Look for `Show Credentials` link on each of the service tiles.  
 ![Overview of the app](static/images/readme_images/credentials.png)
-
-6. Run `python3.5 server.py`
-7. Access the running app in a browser at: [http://localhost:8000] (http://localhost:8000)
+9. Run `python server.py`
+10. Access the running app in a browser at: [http://localhost:8000] (http://localhost:8000)
 
 [Install Python]: https://www.python.org/downloads/
+
+
+
+## Use iPython Notebook to try out the services
+
+**jupyter** folder includes the iPython notebooks for both retrieving the tweets from Insights for Twitter service and getting insights from Watson Personality Insights service. Follow below steps to run it locally.
+
+1. Start jupyter notebook web server: `jupyter notebook`.
+2. Visit `http://localhost:8888/tree` on your web browser.
+3. Click *upload* and select iPython file (*tweets.ipynb*) to upload.  
+![Upload](static/images/readme_images/upload.png)
+4. Change the credentials. You can find the credentials from Bluemix.   
+![Overview of the app](static/images/readme_images/credentials_ip.png)
+5. Run it.
+
 
 
 ## Clean up
