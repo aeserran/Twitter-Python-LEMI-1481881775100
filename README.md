@@ -9,6 +9,7 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
 * How to run the Python code locally?
 * How to retrieve tweets from *Insights for Twitter Service*?
 * How to retrieve insights from *Watson Personality Insights* service?
+* How to use iPython Notebook to make requests to the Bluemix services?
 
 
 You can find the application in [Bluemix](http://perinsight.w3ibm.mybluemix.net/).
