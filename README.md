@@ -29,7 +29,7 @@ You can find a deployed instance of this application in [Bluemix](http://perinsi
 ## Prerequisites
 
 1. Install [cloud foundry command line interface] (https://github.com/cloudfoundry/cli/releases)
-2. Make sure that you have Python version >= 3.5.
+2. Make sure that you have Python version >= 3.5: `python --version`.
 
 
 ## <a name="running_app_in_bluemix"></a>Run the app in Bluemix
@@ -39,7 +39,7 @@ You can find a deployed instance of this application in [Bluemix](http://perinsi
 3. Open the `manifest.yml` file and edit `name` and `host` fields to something else. Don't use the **PerInsight** as it is already taken. Your host name should be unique in Bluemix, i.e. not taken by someone else. Take a note of the **[APP_NAME]**.
 4. Set the api end point to dedicated bluemix: `cf api https://api.w3ibm.bluemix.net`
 5. Login: `cf login`.
-6. Push the application code to Bluemix: `cf push`
+6. Push the application code to Bluemix: `cf push`. If the application exists in Bluemix, it will overwrite the previous code and run your application. If no such application exists in Bluemix, application will be automatically created once it is pushed.
 7. Create a **Insights for Twitter** service. You can do this in two different ways: command line or Web UI.
   * **Web UI**:
     * Find your application in Bluemix dashboard and click on it.   
@@ -82,10 +82,10 @@ You can find a deployed instance of this application in [Bluemix](http://perinsi
 
 ## <a name="running_app_locally"></a>Run the app locally
 
-You can run the Python app locally. If you use Anaconda to manage your Python packages follow the steps for Anaconda, otherwise you can follow the steps without Anaconda.
+You can run the app locally. If you use Anaconda to manage your Python packages follow the steps for Anaconda, otherwise you can follow the steps without Anaconda.
 
 **Note1**: You should first follow the above steps and run the app in Bluemix so that you created the services.  
-**Note2**: Steps explained below are tested in Mac. Commands should be similar for Windows environment.
+**Note2**: Steps explained below are tested in Mac OSX. Commands should be similar for Windows environment.
 
 #### With Anaconda
 
@@ -95,8 +95,7 @@ You can run the Python app locally. If you use Anaconda to manage your Python pa
 4. Create an environment: `conda create --name venv python=3.5`
 5. Activate the environment: `source activate venv`
 6. Install the packages: `conda install --file requirements.txt`
-8. Open the `server.py` file and set the values for `TWITTER_API_USERNAME`, `TWITTER_API_PASSWORD`, `PERSONALITY_INSIGHT_API_USERNAME` and `PERSONALITY_INSIGHT_API_PASSWORD`. You can find these values from Bluemix: Dashboard => Click on the app => Look for `Show Credentials` link on each of the service tiles.  
-![Overview of the app](static/images/readme_images/credentials.png)
+8. Open the `server.py` file and set the values for `TWITTER_API_USERNAME`, `TWITTER_API_PASSWORD`, `PERSONALITY_INSIGHT_API_USERNAME` and `PERSONALITY_INSIGHT_API_PASSWORD`. You can find these values from Bluemix: Dashboard => Click on the app => Look for `Show Credentials` link on each of the service tiles.
 9. Run `python server.py`
 10. Access the running app in a browser at: [http://localhost:3000] (http://localhost:3000)
 
@@ -109,8 +108,7 @@ You can run the Python app locally. If you use Anaconda to manage your Python pa
 5. Create a virtual env: `virtualenv -p python3.5 venv`
 6. Activate the new virtual environment: `source venv/bin/activate`
 7. Install the required Python packages: `pip install -r requirements.txt`
-8. Open the `server.py` file and set the values for `TWITTER_API_USERNAME`, `TWITTER_API_PASSWORD`, `PERSONALITY_INSIGHT_API_USERNAME` and `PERSONALITY_INSIGHT_API_PASSWORD`. You can find these values from Bluemix: Dashboard => Click on the app => Look for `Show Credentials` link on each of the service tiles.  
-![Overview of the app](static/images/readme_images/credentials.png)
+8. Open the `server.py` file and set the values for `TWITTER_API_USERNAME`, `TWITTER_API_PASSWORD`, `PERSONALITY_INSIGHT_API_USERNAME` and `PERSONALITY_INSIGHT_API_PASSWORD`. You can find these values from Bluemix: Dashboard => Click on the app => Look for `Show Credentials` link on each of the service tiles.
 9. Run `python server.py`
 10. Access the running app in a browser at: [http://localhost:3000] (http://localhost:3000)
 
