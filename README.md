@@ -2,17 +2,29 @@
 
 The Personality Insight app demonstrates a simple, reusable Python web application that uses Watson **Personality Insights** and **Insights for Twitter** service in Bluemix. If you follow the steps carefully, you'll learn the followings:
 
-* How to use Bluemix and cloud foundry (cf) comman line interfaces (cli)?
+* How to use cloud foundry (cf) command line interface (cli)?
 * How to create application and services via cf cli?
 * How to bind a service to an application?
 * How to remove application and services via cf cli?
-* How to run the Python code locally?
+* How to run a Python application locally?
 * How to retrieve tweets from *Insights for Twitter Service*?
 * How to retrieve insights from *Watson Personality Insights* service?
-* How to use iPython Notebook to make requests to the Bluemix services?
+* How to use iPython Notebook to test out Bluemix services?
 
 
-You can find the application in [Bluemix](http://perinsight.w3ibm.mybluemix.net/).
+You can find a deployed instance of this application in [Bluemix](http://perinsight.w3ibm.mybluemix.net/).  
+**Note**: All the steps below are test in Mac OSX, however most of the steps should be similar in Windows as well.
+
+## Content
+
+* [Run the application in Bluemix](#running_app_in_bluemix)
+* [Run the application locally](#running_app_locally)
+* [Use iPython Notebook to try out the Bluemix services](#iPython)
+* [Clean up](#cleanup)
+* [How the app works](#how it works)
+  * [Retrieve tweets from Twitter](#retrieve_from_twitter)
+  * [Retrieve insights from Watson Personality Insights service](#retrieve_from_watson)
+
 
 ## Prerequisites
 
@@ -20,7 +32,7 @@ You can find the application in [Bluemix](http://perinsight.w3ibm.mybluemix.net/
 2. Make sure that you have Python version >= 3.5.
 
 
-## Run the app in Bluemix
+## <a name="running_app_in_bluemix"></a>Run the app in Bluemix
 
 1. Download the code to your computer: `git clone git@github.com:bulutmf/PerInsight.git`.
 2. cd into the app directory: `cd PerInsight`
@@ -68,7 +80,7 @@ You can find the application in [Bluemix](http://perinsight.w3ibm.mybluemix.net/
 ![Overview of the app](static/images/readme_images/overview_of_app.png)
 
 
-## Run the app locally
+## <a name="running_app_locally"></a>Run the app locally
 
 You can run the Python app locally. If you use Anaconda to manage your Python packages follow the steps for Anaconda, otherwise you can follow the steps without Anaconda.
 
@@ -106,7 +118,7 @@ You can run the Python app locally. If you use Anaconda to manage your Python pa
 
 
 
-## Use iPython Notebook to try out the services
+## <a name="iPython"></a>Use iPython Notebook to try out the services
 
 **jupyter** folder includes the iPython notebooks for both retrieving the tweets from Insights for Twitter service and getting insights from Watson Personality Insights service. Follow below steps to run it locally.
 
@@ -120,7 +132,7 @@ You can run the Python app locally. If you use Anaconda to manage your Python pa
 
 
 
-## Clean up
+## <a name="cleanup"></a>Clean up
 
 You can clean up the resources you created in two ways.
 
@@ -135,7 +147,7 @@ You can clean up the resources you created in two ways.
 * Delete Personality Insight Service: `cf delete-service [SERVICE_2]`
 
 
-## How the app works?
+## <a name="how it works"></a>How the app works?
 
 The app provides a REST API end point `analyze?twitterHandle=fatih_bulut` which accepts `GET` requests with user's twitter handle as a parameter. Once the twitter handle is retrieved the app will function in three steps: *Retrieving tweets from Twitter*, *Retrieving insights from Watson service* and finally *Presenting insights to end user*. Backend code is in `server.py` file whereas the front end code is in `static/index.html` file. Below shows the `analze` implementation.
 
@@ -147,7 +159,7 @@ def analyze(self, twitterHandle):
       return insights
 ```
 
-### Retrieving tweets from Twitter
+### <a name="retrieve_from_twitter"></a>Retrieving tweets from Twitter
 
 In order to get the tweets from Twitter, the app uses the *Insights for Twitter* service of Bluemix. Once the service is created and bound to the application, credentials such as username, password and url to be queried will appear on the service tile. Below shows the function of `server.py` which is used to retrieve the tweets. Basically, it send a http get requests to Twitter service with parameters as: `q=from:fatih_bulut&lan=en&size=20`. The result returned from Twitter service is a JSON object. For more details see: [Insights for Twitter service documentation] (https://console.ng.bluemix.net/docs/services/Twitter/index.html#twitter)
 
@@ -160,7 +172,7 @@ def getTweets(self, twitterHandle):
 ```
 
 
-### Retrieving insights from Watson service
+### <a name="retrieve_from_watson"></a>Retrieving insights from Watson service
 
 Once the tweets are retrieved, next step would be to give tweets to *Watson Personality Insights* service and retrieve the insights. However, we first need to change the JSON format of tweets so that it conforms to the JSON input format that the Watson Personality Insights service is expecting. Below shows how we change the format.
 
