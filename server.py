@@ -69,7 +69,6 @@ class PersonalityInsight(object):
                 "forward": False
             }
             contentItems.append(item)
-        print(contentItems)
         return json.dumps({"contentItems": contentItems})
 
 if __name__ == '__main__':
