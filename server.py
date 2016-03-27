@@ -38,18 +38,18 @@ class PersonalityInsight(object):
         insights = self.getInsights(jsonContentItems)
         return insights
 
-    # Get insights from Watson Insights service
-    def getInsights(self, jsonContentItems):
-        headers = {'content-type': 'application/json'}
-        response = requests.post("https://gateway.watsonplatform.net/personality-insights/api/v2/profile", headers=headers, data=jsonContentItems, auth=(self.PERSONALITY_INSIGHT_API_USERNAME, self.PERSONALITY_INSIGHT_API_PASSWORD))
-        return response.text
-
     # Get tweets from Insights for Twitter service in Bluemix
     def getTweets(self, twitterHandle):
         payload = {"q": "from:" + twitterHandle, "lan": "en", "size": self.NO_OF_TWEETS_TO_RETRIEVE}
         response = requests.get("https://cdeservice.mybluemix.net:443/api/v1/messages/search", params=payload, auth=(self.TWITTER_API_USERNAME, self.TWITTER_API_PASSWORD))
         tweets = json.loads(response.text)
         return tweets
+
+    # Get insights from Watson Insights service
+    def getInsights(self, jsonContentItems):
+        headers = {'content-type': 'application/json'}
+        response = requests.post("https://gateway.watsonplatform.net/personality-insights/api/v2/profile", headers=headers, data=jsonContentItems, auth=(self.PERSONALITY_INSIGHT_API_USERNAME, self.PERSONALITY_INSIGHT_API_PASSWORD))
+        return response.text
 
     # Convert tweets to content items to conform with Watson Personality Insight input format for json
     def tweetsToContentItem(self, tweets):
