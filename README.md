@@ -11,6 +11,8 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
 * How to retrieve insights from *Watson Personality Insights* service?
 
 
+You can find the application in [Bluemix](http://perinsight.w3ibm.mybluemix.net/).
+
 ## Prerequisites
 
 1. Install [cloud foundry command line interface] (https://github.com/cloudfoundry/cli/releases)
