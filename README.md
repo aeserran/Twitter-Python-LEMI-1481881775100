@@ -12,7 +12,6 @@ The Personality Insight app demonstrates a simple, reusable Python web applicati
 * How to use iPython Notebook to test out Bluemix services?
 
 
-You can find a deployed instance of this application in [Bluemix](http://perinsight.w3ibm.mybluemix.net/).  
 **Note**: All the steps below are test in Mac OSX, however most of the steps should be similar in Windows as well.
 
 ## Content
@@ -37,7 +36,7 @@ You can find a deployed instance of this application in [Bluemix](http://perinsi
 1. Download the code to your computer: `git clone git@github.com:bulutmf/PerInsight.git`.
 2. cd into the app directory: `cd PerInsight`
 3. Open the `manifest.yml` file and edit `name` and `host` fields to something else. Don't use the **PerInsight** as it is already taken. Your host name should be unique in Bluemix, i.e. not taken by someone else. Take a note of the **[APP_NAME]**.
-4. Set the api end point to dedicated bluemix: `cf api https://api.w3ibm.bluemix.net`
+4. Set the api end point to bluemix: `cf api [API_END_POINT]`
 5. Login: `cf login`.
 6. Push the application code to Bluemix: `cf push`. If the application exists in Bluemix, it will overwrite the previous code and run your application. If no such application exists in Bluemix, application will be automatically created once it is pushed.
 7. Create a **Insights for Twitter** service. You can do this in two different ways: command line or Web UI.
@@ -101,7 +100,7 @@ You can run the app locally. If you use Anaconda to manage your Python packages 
 
 #### Without Anaconda
 
-1. [Install Python][] (if you haven't installed it yet). Note that the app uses Python version 3.5. You can check if python is install via: `python --version`
+1. [Install Python][] (if you haven't installed it yet). Note that the app uses Python version 3.5. You can check if python is installed via: `python --version`
 2. Download the code to your computer: `git clone git@github.com:bulutmf/PerInsight.git`.
 3. cd into the app directory: `cd PerInsight`
 4. Install **virtualenv** package: `pip3.5 install virtualenv`
@@ -118,7 +117,7 @@ You can run the app locally. If you use Anaconda to manage your Python packages 
 
 ## <a name="iPython"></a>Use iPython Notebook to try out the services
 
-**jupyter** folder includes the iPython notebooks for both retrieving the tweets from Insights for Twitter service and getting insights from Watson Personality Insights service. Follow below steps to run it locally.
+**jupyter** folder in this repository includes the iPython notebooks for both retrieving the tweets from Insights for Twitter service and getting insights from Watson Personality Insights service. Follow the steps below to run it locally.
 
 1. Start jupyter notebook web server: `jupyter notebook`.
 2. Visit `http://localhost:8888/tree` on your web browser.
@@ -147,7 +146,7 @@ You can clean up the resources you created in two ways.
 
 ## <a name="how it works"></a>How the app works?
 
-The app provides a REST API end point `analyze?twitterHandle=fatih_bulut` which accepts `GET` requests with user's twitter handle as a parameter. Once the twitter handle is retrieved the app will function in three steps: *Retrieving tweets from Twitter*, *Retrieving insights from Watson service* and finally *Presenting insights to end user*. Backend code is in `server.py` file whereas the front end code is in `static/index.html` file. Below shows the `analze` implementation.
+The app provides a REST API end point `analyze?twitterHandle=fatih_bulut` which accepts `GET` requests with user's twitter handle as a parameter. Once the twitter handle is retrieved the app will function in three steps: *Retrieving tweets from Twitter*, *Retrieving insights from Watson service* and finally *Presenting insights* to the end user. Backend code is in `server.py` file whereas the front end code is in `static/index.html` file. Below shows the `analze` implementation.
 
 ```Python
 def analyze(self, twitterHandle):
@@ -206,4 +205,4 @@ def getInsights(self, jsonContentItems):
 
 ### Presenting insights
 
-The last step would be the present personality insights results to the end user. `static/index.html` file used to serve that purpose. Basically, it retrieves the twitter handle from the user and call `analyze` end point in our backend to retrieve the personality insights results. Once it's retrieved, it parses it and present to the user.
+The last step would be to present personality insights result to the end user. `static/index.html` file used to serve that purpose. Basically, it retrieves the twitter handle from the user and call `analyze` end point in our backend to retrieve the personality insights results. Once the results are retrieved, the code parses the results and present to the end user.
